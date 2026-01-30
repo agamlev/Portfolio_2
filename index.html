@@ -105,6 +105,40 @@
     background-size: 32px 32px;
     pointer-events: none;
   }
+  /* page fade-in */
+body {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* project hover */
+.project {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+
+/* link hover polish */
+.links a {
+  transition: opacity 0.15s ease;
+}
+
+.links a:hover {
+  opacity: 0.8;
+}
 </style>
 
 </head>
