@@ -1,21 +1,21 @@
-Portfolio<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Agam Lev | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Pixel-style font -->
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=VT323&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #0e0e0e;
-      --panel: #161616;
-      --text: #e6e6e6;
-      --muted: #9a9a9a;
-      --accent: #4ade80;
-      --border: #2a2a2a;
+      --bg: #0f1115;
+      --panel: #161a22;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #9ae6b4;
+      --border: #222632;
     }
 
     * {
@@ -26,35 +26,42 @@ Portfolio<!DOCTYPE html>
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: 'VT323', monospace;
-      font-size: 20px;
-      line-height: 1.6;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
     }
 
     .container {
       max-width: 960px;
       margin: 0 auto;
-      padding: 48px 24px;
+      padding: 56px 24px;
     }
 
     header {
-      margin-bottom: 64px;
+      margin-bottom: 72px;
     }
 
     h1 {
-      font-size: 48px;
+      font-family: 'VT323', monospace;
+      font-size: 46px;
       margin: 0 0 8px 0;
     }
 
     .subtitle {
       color: var(--muted);
-      margin-bottom: 16px;
+      margin-bottom: 12px;
+    }
+
+    .tagline {
+      margin-bottom: 20px;
+      color: var(--text);
     }
 
     .links a {
       color: var(--accent);
-      margin-right: 24px;
+      margin-right: 20px;
       text-decoration: none;
+      font-weight: 500;
     }
 
     .links a:hover {
@@ -64,54 +71,50 @@ Portfolio<!DOCTYPE html>
     .project {
       background: var(--panel);
       border: 1px solid var(--border);
-      padding: 24px;
-      margin-bottom: 32px;
+      border-radius: 8px;
+      padding: 28px;
+      margin-bottom: 36px;
     }
 
     .project h2 {
+      font-family: 'VT323', monospace;
       font-size: 28px;
       margin-top: 0;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .label {
       color: var(--accent);
+      font-weight: 500;
     }
 
     .block {
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     footer {
-      margin-top: 64px;
+      margin-top: 72px;
       color: var(--muted);
-      font-size: 18px;
-    }
-
-    /* Pixel grid feel */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 20px 20px;
-      pointer-events: none;
+      font-size: 14px;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
 
     <header>
       <h1>Agam Lev</h1>
       <div class="subtitle">
-        Customer Success Operations · Automation · AI Implementation
+        Customer Success Operations · Automation · AI
+      </div>
+      <div class="tagline">
+        Building scalable CS systems, workflows, and AI-driven support
       </div>
       <div class="links">
         <a href="https://github.com/agamlev" target="_blank">GitHub</a>
         <a href="https://zinc-whimsey-6a2.notion.site/Implementing-Fin-AI-2cc5672677dd80d2a8e4f58a164e35e1" target="_blank">Notion</a>
+        <a href="https://www.linkedin.com/in/agamlev" target="_blank">LinkedIn</a>
       </div>
     </header>
 
@@ -120,17 +123,17 @@ Portfolio<!DOCTYPE html>
 
       <div class="block">
         <span class="label">Context:</span><br />
-        Manual handling of operational and customer emails caused delays, missed follow-ups, and poor traceability.
+        Manual handling of operational and customer emails caused delays, missed follow-ups, and lack of traceability.
       </div>
 
       <div class="block">
         <span class="label">What I built:</span><br />
-        A webhook-based automation listening to Gmail events and exposing them for real-time downstream workflows.
+        A webhook-based automation that listens to Gmail events and exposes them for real-time downstream workflows.
       </div>
 
       <div class="block">
         <span class="label">Impact:</span><br />
-        Real-time automation without polling, seamless Jira and Slack integration, reduced response delays.
+        Enabled real-time automation without polling, seamless Jira and Slack integration, reduced response delays.
       </div>
 
       <div class="links">
@@ -153,7 +156,7 @@ Portfolio<!DOCTYPE html>
 
       <div class="block">
         <span class="label">Impact:</span><br />
-        Trend-based reporting, customer-impact visibility, better product prioritization and CS planning.
+        Trend-based reporting, customer-impact visibility, improved product prioritization and CS capacity planning.
       </div>
 
       <div class="links">
@@ -166,17 +169,17 @@ Portfolio<!DOCTYPE html>
 
       <div class="block">
         <span class="label">Context:</span><br />
-        End-to-end implementation of Intercom Fin AI to scale support with operational control.
+        End-to-end implementation of Intercom Fin AI to scale customer support with operational control.
       </div>
 
       <div class="block">
         <span class="label">What I led:</span><br />
-        System mapping, knowledge structuring, MVP rollout, QA, and continuous improvement.
+        System mapping, knowledge structuring, MVP rollout, QA processes, and continuous improvement.
       </div>
 
       <div class="block">
         <span class="label">Impact:</span><br />
-        40%+ automated first responses, $100K+ annual cost reduction, faster resolution at scale.
+        40%+ automated first responses, $100K+ annual cost reduction, faster response times at scale.
       </div>
 
       <div class="links">
@@ -185,7 +188,7 @@ Portfolio<!DOCTYPE html>
     </section>
 
     <footer>
-      Built as a focused operational portfolio. No fluff.
+      Focused operational portfolio · No fluff
     </footer>
 
   </div>
