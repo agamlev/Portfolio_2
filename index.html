@@ -1,0 +1,193 @@
+Portfolio<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Agam Lev | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Pixel-style font -->
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0e0e0e;
+      --panel: #161616;
+      --text: #e6e6e6;
+      --muted: #9a9a9a;
+      --accent: #4ade80;
+      --border: #2a2a2a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'VT323', monospace;
+      font-size: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    header {
+      margin-bottom: 64px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin: 0 0 8px 0;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .links a {
+      color: var(--accent);
+      margin-right: 24px;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    .project {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    .project h2 {
+      font-size: 28px;
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+
+    .label {
+      color: var(--accent);
+    }
+
+    .block {
+      margin-bottom: 12px;
+    }
+
+    footer {
+      margin-top: 64px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    /* Pixel grid feel */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 20px 20px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <h1>Agam Lev</h1>
+      <div class="subtitle">
+        Customer Success Operations · Automation · AI Implementation
+      </div>
+      <div class="links">
+        <a href="https://github.com/agamlev" target="_blank">GitHub</a>
+        <a href="https://zinc-whimsey-6a2.notion.site/Implementing-Fin-AI-2cc5672677dd80d2a8e4f58a164e35e1" target="_blank">Notion</a>
+      </div>
+    </header>
+
+    <section class="project">
+      <h2>Project 1 · Gmail Webhook Automation</h2>
+
+      <div class="block">
+        <span class="label">Context:</span><br />
+        Manual handling of operational and customer emails caused delays, missed follow-ups, and poor traceability.
+      </div>
+
+      <div class="block">
+        <span class="label">What I built:</span><br />
+        A webhook-based automation listening to Gmail events and exposing them for real-time downstream workflows.
+      </div>
+
+      <div class="block">
+        <span class="label">Impact:</span><br />
+        Real-time automation without polling, seamless Jira and Slack integration, reduced response delays.
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/agamlev/Gmail_WebHook" target="_blank">Repository</a>
+      </div>
+    </section>
+
+    <section class="project">
+      <h2>Project 2 · Jira Bugs & Customer Impact Pipeline</h2>
+
+      <div class="block">
+        <span class="label">Context:</span><br />
+        No visibility into how bugs correlated with customer impact and ticket volume.
+      </div>
+
+      <div class="block">
+        <span class="label">What I built:</span><br />
+        Python pipeline fetching Jira data, mapping customer identifiers, and overwriting structured datasets in Google Sheets.
+      </div>
+
+      <div class="block">
+        <span class="label">Impact:</span><br />
+        Trend-based reporting, customer-impact visibility, better product prioritization and CS planning.
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/agamlev/CS_Bugs_Jira_Tracker" target="_blank">Repository</a>
+      </div>
+    </section>
+
+    <section class="project">
+      <h2>Project 3 · Implementing Fin AI at Arbox</h2>
+
+      <div class="block">
+        <span class="label">Context:</span><br />
+        End-to-end implementation of Intercom Fin AI to scale support with operational control.
+      </div>
+
+      <div class="block">
+        <span class="label">What I led:</span><br />
+        System mapping, knowledge structuring, MVP rollout, QA, and continuous improvement.
+      </div>
+
+      <div class="block">
+        <span class="label">Impact:</span><br />
+        40%+ automated first responses, $100K+ annual cost reduction, faster resolution at scale.
+      </div>
+
+      <div class="links">
+        <a href="https://zinc-whimsey-6a2.notion.site/Implementing-Fin-AI-2cc5672677dd80d2a8e4f58a164e35e1" target="_blank">Documentation</a>
+      </div>
+    </section>
+
+    <footer>
+      Built as a focused operational portfolio. No fluff.
+    </footer>
+
+  </div>
+</body>
+</html>
