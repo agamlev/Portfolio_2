@@ -8,96 +8,105 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=VT323&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg: #0f1115;
-      --panel: #161a22;
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --accent: #9ae6b4;
-      --border: #222632;
-    }
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 
-    * {
-      box-sizing: border-box;
-    }
+<style>
+  :root {
+    --bg: #0b0b0b;
+    --panel: #141414;
+    --text: #f1f1f1;
+    --muted: #b3b3b3;
+    --accent: #6ee7b7;
+    --border: #242424;
+  }
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 16px;
-      line-height: 1.7;
-    }
+  * {
+    box-sizing: border-box;
+  }
 
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 56px 24px;
-    }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
 
-    header {
-      margin-bottom: 72px;
-    }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
 
-    h1 {
-      font-family: 'VT323', monospace;
-      font-size: 46px;
-      margin: 0 0 8px 0;
-    }
+  header {
+    margin-bottom: 64px;
+  }
 
-    .subtitle {
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
+  h1 {
+    font-family: 'VT323', monospace;
+    font-size: 48px;
+    margin: 0 0 12px 0;
+  }
 
-    .tagline {
-      margin-bottom: 20px;
-      color: var(--text);
-    }
+  .subtitle {
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
 
-    .links a {
-      color: var(--accent);
-      margin-right: 20px;
-      text-decoration: none;
-      font-weight: 500;
-    }
+  .links a {
+    color: var(--accent);
+    margin-right: 22px;
+    text-decoration: none;
+    font-weight: 500;
+  }
 
-    .links a:hover {
-      text-decoration: underline;
-    }
+  .links a:hover {
+    text-decoration: underline;
+  }
 
-    .project {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 28px;
-      margin-bottom: 36px;
-    }
+  .project {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 26px;
+    margin-bottom: 32px;
+  }
 
-    .project h2 {
-      font-family: 'VT323', monospace;
-      font-size: 28px;
-      margin-top: 0;
-      margin-bottom: 16px;
-    }
+  .project h2 {
+    font-family: 'VT323', monospace;
+    font-size: 28px;
+    margin-top: 0;
+    margin-bottom: 14px;
+  }
 
-    .label {
-      color: var(--accent);
-      font-weight: 500;
-    }
+  .label {
+    color: var(--accent);
+    font-weight: 500;
+  }
 
-    .block {
-      margin-bottom: 14px;
-    }
+  .block {
+    margin-bottom: 14px;
+  }
 
-    footer {
-      margin-top: 72px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-  </style>
+  footer {
+    margin-top: 64px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  /* softened pixel grid */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+  }
+</style>
+
 </head>
 
 <body>
