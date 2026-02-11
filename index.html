@@ -1,239 +1,1140 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Agam Lev | Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>HSI NAV</title>
+  <style>
+    :root{
+      --bg:#070a0d;
+      --panel:#0b0f14;
+      --frame:#121821;
+      --ink:#e9f0fa;
+      --muted:#9aa7b6;
+      --dim:#6f7b88;
+      --tick:#e6edf7;
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=VT323&display=swap" rel="stylesheet">
+      --yellow:#ffd54a;  /* bearing pointer */
+      --red:#ff4c5e;     /* course and lubber */
+      --white:#ffffff;   /* CDI */
+      --good:#3ee18a;
+      --warn:#ffd54a;
+      --bad:#ff4c5e;
 
-<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+      --shadow: rgba(0,0,0,.60);
+      --glass: rgba(255,255,255,.06);
+      --glass2: rgba(255,255,255,.10);
+      --stroke: rgba(255,255,255,.12);
 
-<style>
-  :root {
-    --bg: #0b0b0b;
-    --panel: #141414;
-    --text: #f1f1f1;
-    --muted: #b3b3b3;
-    --accent: #6ee7b7;
-    --border: #242424;
-  }
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
 
-  * {
-    box-sizing: border-box;
-  }
+    *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+    html, body { height:100%; }
+    body{
+      margin:0;
+      background:
+        radial-gradient(900px 700px at 50% 20%, #121a25 0%, var(--bg) 55%, #050607 100%);
+      color:var(--ink);
+      font-family: var(--mono);
+      letter-spacing: .2px;
+    }
 
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 16px;
-    line-height: 1.7;
-  }
+    .app{
+      min-height: 100svh;
+      display:grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 10px;
+      padding: 10px;
+      padding-top: calc(10px + env(safe-area-inset-top));
+      padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    }
 
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 48px 24px;
-  }
+    .top{
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items:center;
+    }
 
-  header {
-    margin-bottom: 64px;
-  }
+    .dest{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      color: var(--ink);
+      outline:none;
+      font-size: 14px;
+    }
 
-  h1 {
-    font-family: 'VT323', monospace;
-    font-size: 48px;
-    margin: 0 0 12px 0;
-  }
+    .btn{
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      color: var(--ink);
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn.primary{
+      background: rgba(255,213,74,.14);
+      border-color: rgba(255,213,74,.30);
+    }
+    .btn.danger{
+      background: rgba(255,76,94,.12);
+      border-color: rgba(255,76,94,.30);
+    }
 
-  .subtitle {
-    color: var(--muted);
-    margin-bottom: 20px;
-  }
+    .center{
+      display:grid;
+      place-items:center;
+      gap: 10px;
+    }
 
-  .links a {
-    color: var(--accent);
-    margin-right: 22px;
-    text-decoration: none;
-    font-weight: 500;
-  }
+    .instrument-wrap{
+      width: min(94vw, 520px);
+      display:grid;
+      gap: 10px;
+    }
 
-  .links a:hover {
-    text-decoration: underline;
-  }
+    .instrument{
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #0f141b 0%, #0a0e13 100%);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 20px 55px var(--shadow);
+      position: relative;
+      overflow:hidden;
+    }
 
-  .project {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 26px;
-    margin-bottom: 32px;
-  }
+    .instrument::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(750px 750px at 50% 50%, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 55%),
+        linear-gradient(135deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,0) 55%, rgba(255,255,255,.04) 100%);
+      pointer-events:none;
+    }
 
-  .project h2 {
-    font-family: 'VT323', monospace;
-    font-size: 28px;
-    margin-top: 0;
-    margin-bottom: 14px;
-  }
+    .dial{
+      position:absolute; inset: 7%;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(0,0,0,.60) 0%, rgba(0,0,0,.78) 60%, rgba(0,0,0,.92) 100%);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 0 0 10px rgba(0,0,0,.30),
+        inset 0 0 0 1px rgba(255,255,255,.10);
+    }
 
-  .label {
-    color: var(--accent);
-    font-weight: 500;
-  }
+    svg{ width:100%; height:100%; display:block; }
 
-  .block {
-    margin-bottom: 14px;
-  }
+    .tick{ stroke: var(--tick); stroke-linecap: round; }
+    .tick.major{ stroke-width: 3.2; opacity:.95; }
+    .tick.minor{ stroke-width: 1.6; opacity:.65; }
 
-  footer {
-    margin-top: 64px;
-    color: var(--muted);
-    font-size: 14px;
-  }
+    .label{ fill: var(--tick); font-weight: 900; }
+    .label.big{ font-size: 18px; }
+    .label.med{ font-size: 14px; opacity:.96; }
 
-  /* softened pixel grid */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-    background-size: 32px 32px;
-    pointer-events: none;
-  }
-  /* page fade-in */
-body {
-  animation: fadeIn 0.6s ease-out forwards;
-}
+    .bearing{ stroke: var(--yellow); fill: var(--yellow); }
+    .course{ stroke: var(--red); fill: var(--red); }
+    .cdi{ stroke: var(--white); fill: var(--white); }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    .aircraft{ stroke: rgba(255,76,94,.95); stroke-width: 4; stroke-linecap: round; }
+    .lubber{ fill: var(--red); opacity:.95; }
 
-/* project hover */
-.project {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+    .hud{
+      display:grid;
+      gap: 8px;
+    }
 
-.project:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-}
+    .kv-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 10px;
+    }
 
-/* link hover polish */
-.links a {
-  transition: opacity 0.15s ease;
-}
+    .kv{
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      padding: 10px 10px;
+    }
 
-.links a:hover {
-  opacity: 0.8;
-}
-</style>
+    .k{
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .9px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
 
+    .v{
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: .3px;
+    }
+
+    .v.dim{ color: var(--dim); font-weight: 800; }
+
+    .row{
+      display:flex;
+      gap: 8px;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .pill{
+      flex: 1;
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 11px;
+      color: var(--muted);
+      overflow:hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .pill strong{ color: var(--ink); }
+
+    .pill.good{ border-color: rgba(62,225,138,.35); color: var(--good); }
+    .pill.warn{ border-color: rgba(255,213,74,.35); color: var(--warn); }
+    .pill.bad{ border-color: rgba(255,76,94,.35); color: var(--bad); }
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    /* Deviation bar */
+    .cdi-bar{
+      position:absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      height: 62px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+      display:grid;
+      grid-template-rows: 1fr auto;
+      padding: 10px 10px 8px;
+    }
+    .cdi-bar .title{
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .9px;
+      text-transform: uppercase;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .scale{
+      position: relative;
+      height: 24px;
+      margin-top: 6px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .scale .centerline{
+      position:absolute;
+      left: 50%;
+      top: 3px;
+      bottom: 3px;
+      width: 2px;
+      transform: translateX(-1px);
+      background: rgba(255,76,94,.90);
+      border-radius: 2px;
+    }
+    .scale .ticks{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(to right,
+          transparent 0%,
+          transparent 9.5%,
+          rgba(255,255,255,.10) 9.5%,
+          rgba(255,255,255,.10) 10%,
+          transparent 10%,
+          transparent 19.5%,
+          rgba(255,255,255,.10) 19.5%,
+          rgba(255,255,255,.10) 20%,
+          transparent 20%,
+          transparent 29.5%,
+          rgba(255,255,255,.10) 29.5%,
+          rgba(255,255,255,.10) 30%,
+          transparent 30%,
+          transparent 39.5%,
+          rgba(255,255,255,.10) 39.5%,
+          rgba(255,255,255,.10) 40%,
+          transparent 40%,
+          transparent 49.5%,
+          rgba(255,255,255,.14) 49.5%,
+          rgba(255,255,255,.14) 50%,
+          transparent 50%,
+          transparent 59.5%,
+          rgba(255,255,255,.10) 59.5%,
+          rgba(255,255,255,.10) 60%,
+          transparent 60%,
+          transparent 69.5%,
+          rgba(255,255,255,.10) 69.5%,
+          rgba(255,255,255,.10) 70%,
+          transparent 70%,
+          transparent 79.5%,
+          rgba(255,255,255,.10) 79.5%,
+          rgba(255,255,255,.10) 80%,
+          transparent 80%,
+          transparent 89.5%,
+          rgba(255,255,255,.10) 89.5%,
+          rgba(255,255,255,.10) 90%,
+          transparent 90%,
+          transparent 100%
+        );
+      opacity: .55;
+      border-radius: 10px;
+      pointer-events:none;
+    }
+    .scale .bug{
+      position:absolute;
+      top: 3px;
+      bottom: 3px;
+      width: 5px;
+      border-radius: 4px;
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.35);
+      transform: translateX(-2px);
+    }
+
+    .hint{
+      color: var(--dim);
+      font-size: 11px;
+      line-height: 1.35;
+      margin-top: 2px;
+    }
+  </style>
 </head>
-
 <body>
-  <div class="container">
+  <div class="app">
+    <div class="top">
+      <input id="destInput" class="dest" placeholder="DEST: (lat, lon) or Google Maps link" autocomplete="off" />
+      <button id="btnSet" class="btn">Set</button>
+    </div>
 
-    <header>
-      <h1>Agam Lev</h1>
-      <div class="subtitle">
-        Customer Success Operations · Automation · AI
+    <div class="center">
+      <div class="instrument-wrap">
+        <div class="instrument" aria-label="HSI">
+          <div class="dial">
+            <svg viewBox="-200 -200 400 400">
+              <!-- Rotating compass card -->
+              <g id="card">
+                <circle r="175" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="2"/>
+                <circle r="145" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="2"/>
+                <g id="ticks"></g>
+                <g id="labels"></g>
+              </g>
+
+              <!-- Course group (fixed to CRS relative to heading) -->
+              <g id="courseGroup">
+                <line class="course" x1="0" y1="-160" x2="0" y2="160" stroke-width="3" opacity=".9"/>
+                <polygon class="course" points="0,-170 12,-144 0,-152 -12,-144" opacity=".98"/>
+                <g id="cdiNeedle">
+                  <line class="cdi" x1="0" y1="-150" x2="0" y2="150" stroke-width="4" opacity=".95"/>
+                  <g opacity=".95">
+                    <circle class="cdi" cx="0" cy="-90" r="3.2"/>
+                    <circle class="cdi" cx="0" cy="-60" r="3.2"/>
+                    <circle class="cdi" cx="0" cy="-30" r="3.2"/>
+                    <circle class="cdi" cx="0" cy="30" r="3.2"/>
+                    <circle class="cdi" cx="0" cy="60" r="3.2"/>
+                    <circle class="cdi" cx="0" cy="90" r="3.2"/>
+                  </g>
+                </g>
+              </g>
+
+              <!-- Bearing pointer (direct-to) -->
+              <g id="bearingGroup">
+                <line class="bearing" x1="0" y1="140" x2="0" y2="-140" stroke-width="3.5" opacity=".95"/>
+                <polygon class="bearing" points="0,-162 12,-138 0,-146 -12,-138" opacity=".98"/>
+              </g>
+
+              <!-- Fixed aircraft symbol + lubber line -->
+              <g id="fixed">
+                <polygon class="lubber" points="0,-188 -10,-168 10,-168"/>
+                <line class="aircraft" x1="-18" y1="0" x2="18" y2="0"/>
+                <line class="aircraft" x1="0" y1="-18" x2="0" y2="18"/>
+                <circle cx="0" cy="0" r="5" fill="rgba(255,76,94,.95)"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Deviation bar -->
+          <div class="cdi-bar">
+            <div class="title">
+              <span>CDI XTK (m)</span>
+              <span id="xtkNum" style="color:var(--ink); font-weight:900;">--</span>
+            </div>
+            <div class="scale">
+              <div class="ticks"></div>
+              <div class="centerline"></div>
+              <div id="cdiBug" class="bug" style="left:50%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hud">
+          <div class="row">
+            <div id="pillDest" class="pill">DEST: <strong>NOT SET</strong></div>
+            <div id="pillGps" class="pill warn">GPS: WAIT</div>
+          </div>
+
+          <div class="kv-grid">
+            <div class="kv">
+              <div class="k">DIST TO DEST</div>
+              <div id="dist" class="v dim">--</div>
+            </div>
+            <div class="kv">
+              <div class="k">BRG</div>
+              <div id="brg" class="v dim">--</div>
+            </div>
+
+            <div class="kv">
+              <div class="k">HDG</div>
+              <div id="hdg" class="v dim">--</div>
+            </div>
+            <div class="kv">
+              <div class="k">CRS (START TO DEST)</div>
+              <div id="crs" class="v dim">--</div>
+            </div>
+
+            <div class="kv">
+              <div class="k">XTK (RIGHT+, LEFT-)</div>
+              <div id="xtk" class="v dim">--</div>
+            </div>
+            <div class="kv">
+              <div class="k">ALONG / TOTAL</div>
+              <div id="along" class="v dim">--</div>
+            </div>
+
+            <div class="kv">
+              <div class="k">GS (GPS)</div>
+              <div id="gs" class="v dim">--</div>
+            </div>
+            <div class="kv">
+              <div class="k">ALT (GPS)</div>
+              <div id="alt" class="v dim">--</div>
+            </div>
+
+            <div class="kv">
+              <div class="k">EFF SPEED (INSTANT)</div>
+              <div id="effNow" class="v dim">--</div>
+            </div>
+            <div class="kv">
+              <div class="k">EFF SPEED (AVG)</div>
+              <div id="effAvg" class="v dim">--</div>
+            </div>
+
+            <div class="kv">
+              <div class="k">ETA (AVG EFF)</div>
+              <div id="etaEff" class="v dim">--</div>
+            </div>
+            <div class="kv">
+              <div class="k">ETA (GS)</div>
+              <div id="etaGs" class="v dim">--</div>
+            </div>
+
+            <div class="kv">
+              <div class="k">ELAPSED</div>
+              <div id="elapsed" class="v dim">--</div>
+            </div>
+            <div class="kv">
+              <div class="k">CLOCK</div>
+              <div id="clock" class="v">--</div>
+            </div>
+
+            <div class="kv">
+              <div class="k">GPS ACCURACY</div>
+              <div id="acc" class="v dim">--</div>
+            </div>
+            <div class="kv">
+              <div class="k">PROGRESS</div>
+              <div id="prog" class="v dim">--</div>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button id="btnCompass" class="btn">Enable Compass</button>
+            <button id="btnStart" class="btn primary">Start Navigation</button>
+            <button id="btnStop" class="btn danger">Stop</button>
+          </div>
+
+          <div class="controls">
+            <button id="btnRecenter" class="btn">Re-center</button>
+            <button id="btnReset" class="btn">Reset</button>
+            <button id="btnCopy" class="btn">Copy Fix</button>
+          </div>
+
+          <div class="hint" id="hint">
+            Note: short Google Maps links may not resolve in-browser. Paste expanded links or raw coordinates when possible.
+          </div>
+        </div>
       </div>
-      <div class="tagline">
-        Building scalable CS systems, workflows, and AI-driven support
-      </div>
-      <div class="links">
-        <a href="https://github.com/agamlev" target="_blank">GitHub</a>
-        <a href="https://zinc-whimsey-6a2.notion.site/Implementing-Fin-AI-2cc5672677dd80d2a8e4f58a164e35e1" target="_blank">Notion</a>
-        <a href="https://www.linkedin.com/in/agamlev" target="_blank">LinkedIn</a>
-      </div>
-    </header>
+    </div>
 
-    <section class="project">
-      <h2>Project 1 · Gmail Webhook Automation</h2>
-
-      <div class="block">
-        <span class="label">Context:</span><br />
-        Manual handling of operational and customer emails caused delays, missed follow-ups, and lack of traceability.
-      </div>
-
-      <div class="block">
-        <span class="label">What I built:</span><br />
-        A webhook-based automation that listens to Gmail events and exposes them for real-time downstream workflows.
-      </div>
-
-      <div class="block">
-        <span class="label">Impact:</span><br />
-        Enabled real-time automation without polling, seamless Jira and Slack integration, reduced response delays.
-      </div>
-
-      <div class="links">
-        <a href="https://github.com/agamlev/Gmail_WebHook" target="_blank">Repository</a>
-      </div>
-    </section>
-
-    <section class="project">
-      <h2>Project 2 · Jira Bugs & Customer Impact Pipeline</h2>
-
-      <div class="block">
-        <span class="label">Context:</span><br />
-        No visibility into how bugs correlated with customer impact and ticket volume.
-      </div>
-
-      <div class="block">
-        <span class="label">What I built:</span><br />
-        Python pipeline fetching Jira data, mapping customer identifiers, and overwriting structured datasets in Google Sheets.
-      </div>
-
-      <div class="block">
-        <span class="label">Impact:</span><br />
-        Trend-based reporting, customer-impact visibility, improved product prioritization and CS capacity planning.
-      </div>
-
-      <div class="links">
-        <a href="https://github.com/agamlev/CS_Bugs_Jira_Tracker" target="_blank">Repository</a>
-      </div>
-    </section>
-
-    <section class="project">
-      <h2>Project 3 · Implementing Fin AI at Arbox</h2>
-
-      <div class="block">
-        <span class="label">Context:</span><br />
-        End-to-end implementation of Intercom Fin AI to scale customer support with operational control.
-      </div>
-
-      <div class="block">
-        <span class="label">What I led:</span><br />
-        System mapping, knowledge structuring, MVP rollout, QA processes, and continuous improvement.
-      </div>
-
-      <div class="block">
-        <span class="label">Impact:</span><br />
-        40%+ automated first responses, $100K+ annual cost reduction, faster response times at scale.
-      </div>
-
-      <div class="links">
-        <a href="https://zinc-whimsey-6a2.notion.site/Implementing-Fin-AI-2cc5672677dd80d2a8e4f58a164e35e1" target="_blank">Documentation</a>
-      </div>
-    </section>
-
-    <footer>
-      Focused operational portfolio · No fluff
-    </footer>
-
+    <div></div>
   </div>
+
+<script>
+(() => {
+  const R = 6371000;
+
+  const $ = (id) => document.getElementById(id);
+
+  const ui = {
+    destInput: $("destInput"),
+    btnSet: $("btnSet"),
+    btnCompass: $("btnCompass"),
+    btnStart: $("btnStart"),
+    btnStop: $("btnStop"),
+    btnReset: $("btnReset"),
+    btnRecenter: $("btnRecenter"),
+    btnCopy: $("btnCopy"),
+
+    pillDest: $("pillDest"),
+    pillGps: $("pillGps"),
+
+    dist: $("dist"),
+    brg: $("brg"),
+    hdg: $("hdg"),
+    crs: $("crs"),
+    xtk: $("xtk"),
+    along: $("along"),
+    gs: $("gs"),
+    alt: $("alt"),
+    effNow: $("effNow"),
+    effAvg: $("effAvg"),
+    etaEff: $("etaEff"),
+    etaGs: $("etaGs"),
+    elapsed: $("elapsed"),
+    clock: $("clock"),
+    acc: $("acc"),
+    prog: $("prog"),
+
+    xtkNum: $("xtkNum"),
+    cdiBug: $("cdiBug"),
+
+    card: document.getElementById("card"),
+    courseGroup: document.getElementById("courseGroup"),
+    bearingGroup: document.getElementById("bearingGroup"),
+    cdiNeedle: document.getElementById("cdiNeedle"),
+    ticks: document.getElementById("ticks"),
+    labels: document.getElementById("labels"),
+  };
+
+  const state = {
+    dest: null,              // {lat, lon}
+    navActive: false,
+
+    start: null,             // {lat, lon}
+    startTime: null,         // ms
+    courseDeg: null,         // CRS start to dest
+    totalDist: null,         // meters
+
+    pos: null,               // {lat, lon, t, speed, heading, altitude, accuracy}
+    lastPos: null,           // {lat, lon, t}
+    lastFixTime: null,       // ms
+
+    compassHeading: null,    // degrees
+    headingUsed: null,       // degrees
+    watchId: null,
+    compassEnabled: false,
+
+    gpsStatus: "WAIT",
+    gpsQuality: "warn",      // good|warn|bad
+  };
+
+  function toRad(d){ return d * Math.PI / 180; }
+  function toDeg(r){ return r * 180 / Math.PI; }
+  function norm360(d){ d = d % 360; return d < 0 ? d + 360 : d; }
+  function clamp(x,a,b){ return Math.max(a, Math.min(b,x)); }
+
+  function haversine(a,b){
+    const p1 = toRad(a.lat), p2 = toRad(b.lat);
+    const dphi = toRad(b.lat - a.lat);
+    const dl = toRad(b.lon - a.lon);
+    const s = Math.sin(dphi/2)**2 + Math.cos(p1)*Math.cos(p2)*Math.sin(dl/2)**2;
+    return 2 * R * Math.asin(Math.min(1, Math.sqrt(s)));
+  }
+
+  function bearing(a,b){
+    const p1 = toRad(a.lat), p2 = toRad(b.lat);
+    const dl = toRad(b.lon - a.lon);
+    const y = Math.sin(dl) * Math.cos(p2);
+    const x = Math.cos(p1)*Math.sin(p2) - Math.sin(p1)*Math.cos(p2)*Math.cos(dl);
+    return norm360(toDeg(Math.atan2(y,x)));
+  }
+
+  function angleDiff(a,b){
+    // returns signed shortest difference a-b in degrees (-180..180)
+    let d = (a - b + 540) % 360 - 180;
+    return d;
+  }
+
+  function crossTrackAndAlong(start, dest, cur){
+    // spherical cross-track, along-track
+    const d13 = haversine(start, cur) / R;
+    const th13 = toRad(bearing(start, cur));
+    const th12 = toRad(bearing(start, dest));
+
+    const xt = Math.asin(Math.sin(d13) * Math.sin(th13 - th12)) * R;
+
+    const cosArg = Math.cos(d13) / Math.max(1e-9, Math.cos(xt / R));
+    const at = Math.acos(clamp(cosArg, -1, 1)) * R;
+
+    return { xt, at };
+  }
+
+  function fmtDist(m){
+    if (!isFinite(m)) return "--";
+    if (m < 1000) return `${Math.round(m)} m`;
+    return `${(m/1000).toFixed(2)} km`;
+  }
+
+  function fmtDeg(d){
+    if (!isFinite(d)) return "--";
+    return `${Math.round(norm360(d))}°`;
+  }
+
+  function fmtSpeed(mps){
+    if (!isFinite(mps)) return "--";
+    const kmh = mps * 3.6;
+    return `${kmh.toFixed(1)} km/h`;
+  }
+
+  function fmtAlt(m){
+    if (!isFinite(m)) return "--";
+    return `${Math.round(m)} m`;
+  }
+
+  function fmtAcc(m){
+    if (!isFinite(m)) return "--";
+    return `${Math.round(m)} m`;
+  }
+
+  function fmtTime(sec){
+    if (!isFinite(sec) || sec < 0) return "--";
+    const s = Math.floor(sec);
+    const h = Math.floor(s/3600);
+    const m = Math.floor((s%3600)/60);
+    const r = s%60;
+    return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(r).padStart(2,"0")}`;
+  }
+
+  function setGpsPill(text, quality){
+    ui.pillGps.textContent = `GPS: ${text}`;
+    ui.pillGps.classList.remove("good","warn","bad");
+    ui.pillGps.classList.add(quality);
+  }
+
+  function setDestPill(text){
+    ui.pillDest.innerHTML = `DEST: <strong>${text}</strong>`;
+  }
+
+  function buildDial(){
+    // ticks each 5 degrees, major each 30 degrees
+    for (let deg = 0; deg < 360; deg += 5){
+      const major = (deg % 30 === 0);
+      const r1 = 170;
+      const r2 = major ? 145 : 155;
+
+      const a = toRad(deg - 90);
+      const x1 = Math.cos(a)*r1, y1 = Math.sin(a)*r1;
+      const x2 = Math.cos(a)*r2, y2 = Math.sin(a)*r2;
+
+      const line = document.createElementNS("http://www.w3.org/2000/svg","line");
+      line.setAttribute("x1", x1); line.setAttribute("y1", y1);
+      line.setAttribute("x2", x2); line.setAttribute("y2", y2);
+      line.setAttribute("class", `tick ${major ? "major" : "minor"}`);
+      ui.ticks.appendChild(line);
+    }
+
+    // labels like HSI: N/E/S/W and 3,6,9,...33
+    for (let deg=0; deg<360; deg+=30){
+      let text = "";
+      if (deg === 0) text = "N";
+      else if (deg === 90) text = "E";
+      else if (deg === 180) text = "S";
+      else if (deg === 270) text = "W";
+      else text = String(deg/10);
+
+      const a = toRad(deg - 90);
+      const r = 122;
+      const x = Math.cos(a)*r;
+      const y = Math.sin(a)*r;
+
+      const t = document.createElementNS("http://www.w3.org/2000/svg","text");
+      t.setAttribute("x", x);
+      t.setAttribute("y", y + 6);
+      t.setAttribute("text-anchor","middle");
+      t.setAttribute("class", "label big");
+      t.textContent = text;
+      ui.labels.appendChild(t);
+    }
+  }
+
+  function parseCoordsFromText(text){
+    const t = (text || "").trim();
+
+    // (lat, lon) or lat,lon
+    const m1 = t.match(/^\(?\s*(-?\d{1,2}\.\d+)\s*,\s*(-?\d{1,3}\.\d+)\s*\)?$/);
+    if (m1) return {lat:+m1[1], lon:+m1[2]};
+
+    // Google maps patterns
+    const mAt = t.match(/@(-?\d{1,2}\.\d+),(-?\d{1,3}\.\d+)/);
+    if (mAt) return {lat:+mAt[1], lon:+mAt[2]};
+
+    const mQ = t.match(/[?&](q|query)=(-?\d{1,2}\.\d+),(-?\d{1,3}\.\d+)/i);
+    if (mQ) return {lat:+mQ[2], lon:+mQ[3]};
+
+    const mLL = t.match(/[?&]ll=(-?\d{1,2}\.\d+),(-?\d{1,3}\.\d+)/i);
+    if (mLL) return {lat:+mLL[1], lon:+mLL[2]};
+
+    const mBang = t.match(/!3d(-?\d{1,2}\.\d+)!4d(-?\d{1,3}\.\d+)/);
+    if (mBang) return {lat:+mBang[1], lon:+mBang[2]};
+
+    // Any lat,lon inside url
+    const mAny = t.match(/(-?\d{1,2}\.\d+)\s*,\s*(-?\d{1,3}\.\d+)/);
+    if (mAny && /^https?:\/\//i.test(t)) return {lat:+mAny[1], lon:+mAny[2]};
+
+    return null;
+  }
+
+  async function tryResolveShortLink(url){
+    // Best-effort. Often blocked by CORS.
+    try{
+      const res = await fetch(url, { redirect:"follow" });
+      const finalUrl = res.url || url;
+      return parseCoordsFromText(finalUrl);
+    }catch{
+      return null;
+    }
+  }
+
+  async function setDestination(){
+    const raw = ui.destInput.value.trim();
+    if (!raw){
+      setDestPill("NOT SET");
+      state.dest = null;
+      return;
+    }
+
+    let c = parseCoordsFromText(raw);
+
+    if (!c && /^https?:\/\//i.test(raw)){
+      c = await tryResolveShortLink(raw);
+    }
+
+    if (!c || !isFinite(c.lat) || !isFinite(c.lon)){
+      state.dest = null;
+      setDestPill("INVALID INPUT");
+      return;
+    }
+
+    state.dest = c;
+    setDestPill(`${c.lat.toFixed(6)}, ${c.lon.toFixed(6)}`);
+  }
+
+  function ensureGeo(){
+    if (!("geolocation" in navigator)){
+      setGpsPill("UNAVAILABLE", "bad");
+      return false;
+    }
+    return true;
+  }
+
+  function startWatch(){
+    if (state.watchId != null) return;
+    if (!ensureGeo()) return;
+
+    state.watchId = navigator.geolocation.watchPosition(onFix, onFixError, {
+      enableHighAccuracy: true,
+      maximumAge: 500,
+      timeout: 12000
+    });
+  }
+
+  function stopWatch(){
+    if (state.watchId != null){
+      navigator.geolocation.clearWatch(state.watchId);
+      state.watchId = null;
+    }
+  }
+
+  function onFixError(err){
+    state.gpsStatus = "NO FIX";
+    state.gpsQuality = "bad";
+    setGpsPill("NO FIX", "bad");
+  }
+
+  function onFix(pos){
+    const t = pos.timestamp || Date.now();
+    const lat = pos.coords.latitude;
+    const lon = pos.coords.longitude;
+
+    const accuracy = pos.coords.accuracy;
+    const altitude = pos.coords.altitude;
+
+    let speed = pos.coords.speed;
+    let cog = pos.coords.heading;
+
+    // Fallback speed and COG from deltas
+    if (!isFinite(speed) || !isFinite(cog)){
+      if (state.lastPos){
+        const dt = (t - state.lastPos.t) / 1000;
+        if (dt > 0.3){
+          const d = haversine({lat:state.lastPos.lat, lon:state.lastPos.lon}, {lat, lon});
+          const brg = bearing({lat:state.lastPos.lat, lon:state.lastPos.lon}, {lat, lon});
+          if (!isFinite(speed)) speed = d / dt;
+          if (!isFinite(cog)) cog = brg;
+        }
+      }
+    }
+
+    state.pos = {
+      lat, lon, t,
+      speed: isFinite(speed) ? speed : null,
+      cog: isFinite(cog) ? cog : null,
+      altitude: isFinite(altitude) ? altitude : null,
+      accuracy: isFinite(accuracy) ? accuracy : null
+    };
+    state.lastPos = { lat, lon, t };
+    state.lastFixTime = Date.now();
+
+    // GPS quality
+    const acc = state.pos.accuracy;
+    if (!isFinite(acc)){
+      state.gpsStatus = "OK";
+      state.gpsQuality = "warn";
+      setGpsPill("OK", "warn");
+    } else if (acc <= 15){
+      state.gpsStatus = "OK";
+      state.gpsQuality = "good";
+      setGpsPill("OK", "good");
+    } else if (acc <= 50){
+      state.gpsStatus = "WEAK";
+      state.gpsQuality = "warn";
+      setGpsPill("WEAK", "warn");
+    } else {
+      state.gpsStatus = "POOR";
+      state.gpsQuality = "bad";
+      setGpsPill("POOR", "bad");
+    }
+  }
+
+  async function enableCompass(){
+    try{
+      if (typeof DeviceOrientationEvent !== "undefined" &&
+          typeof DeviceOrientationEvent.requestPermission === "function"){
+        const p = await DeviceOrientationEvent.requestPermission();
+        if (p !== "granted"){
+          setGpsPill("COMPASS DENIED", "warn");
+          return;
+        }
+      }
+      window.addEventListener("deviceorientationabsolute", onOrientation, true);
+      window.addEventListener("deviceorientation", onOrientation, true);
+      state.compassEnabled = true;
+    }catch{
+      setGpsPill("COMPASS FAIL", "warn");
+    }
+  }
+
+  function onOrientation(e){
+    let hdg = null;
+
+    if (typeof e.webkitCompassHeading === "number"){
+      hdg = e.webkitCompassHeading;
+    } else if (typeof e.alpha === "number"){
+      hdg = 360 - e.alpha;
+    }
+
+    const ang = (screen.orientation && typeof screen.orientation.angle === "number")
+      ? screen.orientation.angle
+      : (typeof window.orientation === "number" ? window.orientation : 0);
+
+    if (isFinite(hdg)) hdg = norm360(hdg + ang);
+    if (isFinite(hdg)) state.compassHeading = hdg;
+  }
+
+  function headingUsed(){
+    // Prefer compass; fallback to GPS COG if moving; else keep last.
+    if (isFinite(state.compassHeading)) return state.compassHeading;
+    if (state.pos && isFinite(state.pos.cog) && state.pos.speed != null && state.pos.speed > 0.9) return norm360(state.pos.cog);
+    if (isFinite(state.headingUsed)) return state.headingUsed;
+    return 0;
+  }
+
+  function startNavigation(){
+    if (!state.dest){
+      setDestPill("NOT SET");
+      return;
+    }
+    if (!state.pos){
+      setGpsPill("WAIT", "warn");
+      return;
+    }
+
+    state.navActive = true;
+    state.start = { lat: state.pos.lat, lon: state.pos.lon };
+    state.startTime = Date.now();
+    state.courseDeg = bearing(state.start, state.dest);
+    state.totalDist = haversine(state.start, state.dest);
+  }
+
+  function stopNavigation(){
+    state.navActive = false;
+  }
+
+  function resetAll(){
+    stopNavigation();
+    state.dest = null;
+    state.start = null;
+    state.startTime = null;
+    state.courseDeg = null;
+    state.totalDist = null;
+    ui.destInput.value = "";
+    setDestPill("NOT SET");
+
+    ui.dist.textContent = "--";
+    ui.brg.textContent = "--";
+    ui.hdg.textContent = "--";
+    ui.crs.textContent = "--";
+    ui.xtk.textContent = "--";
+    ui.along.textContent = "--";
+    ui.gs.textContent = "--";
+    ui.alt.textContent = "--";
+    ui.effNow.textContent = "--";
+    ui.effAvg.textContent = "--";
+    ui.etaEff.textContent = "--";
+    ui.etaGs.textContent = "--";
+    ui.elapsed.textContent = "--";
+    ui.acc.textContent = "--";
+    ui.prog.textContent = "--";
+    ui.xtkNum.textContent = "--";
+    ui.cdiBug.style.left = "50%";
+    ui.card.setAttribute("transform", "rotate(0)");
+    ui.bearingGroup.setAttribute("transform", "rotate(0)");
+    ui.courseGroup.setAttribute("transform", "rotate(0)");
+    ui.cdiNeedle.setAttribute("transform", "translate(0,0)");
+  }
+
+  function recenter(){
+    if (!state.dest || !state.pos) return;
+    state.start = { lat: state.pos.lat, lon: state.pos.lon };
+    state.startTime = Date.now();
+    state.courseDeg = bearing(state.start, state.dest);
+    state.totalDist = haversine(state.start, state.dest);
+    state.navActive = true;
+  }
+
+  function copyFix(){
+    if (!state.pos) return;
+    const s = `${state.pos.lat.toFixed(7)}, ${state.pos.lon.toFixed(7)}`;
+    navigator.clipboard?.writeText(s).catch(()=>{});
+  }
+
+  function updateClock(){
+    ui.clock.textContent = new Date().toLocaleTimeString("en-GB", {hour:"2-digit", minute:"2-digit", second:"2-digit"});
+  }
+
+  function render(){
+    updateClock();
+
+    // Fix age handling
+    if (state.lastFixTime){
+      const age = (Date.now() - state.lastFixTime) / 1000;
+      if (age > 8){
+        setGpsPill("STALE", "warn");
+      }
+      if (age > 20){
+        setGpsPill("NO FIX", "bad");
+      }
+    }
+
+    const p = state.pos;
+    const d = state.dest;
+
+    // Always rotate card to heading used if possible
+    const hdg = headingUsed();
+    state.headingUsed = hdg;
+    ui.card.setAttribute("transform", `rotate(${-hdg})`);
+    ui.hdg.textContent = fmtDeg(hdg);
+
+    if (!p){
+      requestAnimationFrame(render);
+      return;
+    }
+
+    ui.alt.textContent = fmtAlt(p.altitude);
+    ui.acc.textContent = fmtAcc(p.accuracy);
+
+    if (!d){
+      requestAnimationFrame(render);
+      return;
+    }
+
+    const cur = { lat: p.lat, lon: p.lon };
+
+    const distToDest = haversine(cur, d);
+    const brgToDest = bearing(cur, d);
+
+    ui.dist.textContent = fmtDist(distToDest);
+    ui.brg.textContent = fmtDeg(brgToDest);
+
+    // Bearing pointer relative to heading
+    const brgRel = norm360(brgToDest - hdg);
+    ui.bearingGroup.setAttribute("transform", `rotate(${brgRel})`);
+
+    let crs = state.courseDeg;
+    let xtk = null;
+    let along = null;
+    let total = state.totalDist;
+
+    if (state.start && isFinite(crs)){
+      ui.crs.textContent = fmtDeg(crs);
+
+      const { xt, at } = crossTrackAndAlong(state.start, d, cur);
+
+      // Clamp along track to [0, total] when total is known
+      let atClamped = at;
+      if (isFinite(total)) atClamped = clamp(at, 0, total);
+
+      xtk = xt;
+      along = atClamped;
+
+      const xtkSigned = isFinite(xtk) ? xtk : NaN;
+      ui.xtk.textContent = isFinite(xtkSigned) ? `${Math.round(xtkSigned)} m` : "--";
+      ui.xtkNum.textContent = isFinite(xtkSigned) ? `${Math.round(xtkSigned)}` : "--";
+
+      if (isFinite(total) && isFinite(along)){
+        ui.along.textContent = `${fmtDist(along)} / ${fmtDist(total)}`;
+        const pct = total > 1 ? clamp((along / total) * 100, 0, 100) : 0;
+        ui.prog.textContent = `${pct.toFixed(1)}%`;
+      } else {
+        ui.along.textContent = "--";
+        ui.prog.textContent = "--";
+      }
+
+      // Course group rotation relative to heading
+      const crsRel = norm360(crs - hdg);
+      ui.courseGroup.setAttribute("transform", `rotate(${crsRel})`);
+
+      // CDI deflection mapping (meters to pixels)
+      const maxDefMeters = 120;    // full scale
+      const cdiMaxPx = 55;         // SVG needle deflection
+      const barMaxPct = 45;        // deviation bar range from center
+
+      const dx = isFinite(xtk) ? clamp(xtk / maxDefMeters, -1, 1) : 0;
+      ui.cdiNeedle.setAttribute("transform", `translate(${dx * cdiMaxPx},0)`);
+
+      const leftPct = 50 + dx * barMaxPct;
+      ui.cdiBug.style.left = `${leftPct}%`;
+    } else {
+      ui.crs.textContent = "--";
+      ui.xtk.textContent = "--";
+      ui.along.textContent = "--";
+      ui.prog.textContent = "--";
+      ui.xtkNum.textContent = "--";
+      ui.cdiBug.style.left = "50%";
+    }
+
+    // Speeds
+    const gs = isFinite(p.speed) ? p.speed : null;
+    ui.gs.textContent = fmtSpeed(gs);
+
+    // Effective speed (instant): project GS on course axis
+    let effNow = null;
+    if (isFinite(gs) && isFinite(crs) && isFinite(p.cog)){
+      const diff = toRad(angleDiff(p.cog, crs));
+      effNow = Math.max(0, gs * Math.cos(diff));
+    } else if (isFinite(gs) && isFinite(crs) && state.lastPos){
+      // fallback estimate using recent bearing
+      const dt = (p.t - state.lastPos.t) / 1000;
+      if (dt > 0.3){
+        const trk = bearing({lat:state.lastPos.lat, lon:state.lastPos.lon}, cur);
+        const diff = toRad(angleDiff(trk, crs));
+        effNow = Math.max(0, gs * Math.cos(diff));
+      }
+    }
+    ui.effNow.textContent = fmtSpeed(effNow);
+
+    // Elapsed
+    let elapsedSec = null;
+    if (state.navActive && state.startTime){
+      elapsedSec = (Date.now() - state.startTime) / 1000;
+      ui.elapsed.textContent = fmtTime(elapsedSec);
+    } else {
+      ui.elapsed.textContent = "--";
+    }
+
+    // Average effective speed: along-track / elapsed
+    let effAvg = null;
+    if (state.navActive && isFinite(along) && isFinite(elapsedSec) && elapsedSec > 1.0){
+      effAvg = along / elapsedSec;
+    }
+    ui.effAvg.textContent = fmtSpeed(effAvg);
+
+    // ETAs
+    let etaEff = null;
+    if (state.navActive && isFinite(total) && isFinite(along) && isFinite(effAvg) && effAvg > 0.5){
+      const remain = Math.max(0, total - along);
+      etaEff = remain / effAvg;
+    }
+    ui.etaEff.textContent = fmtTime(etaEff);
+
+    let etaGs = null;
+    if (state.navActive && isFinite(distToDest) && isFinite(gs) && gs > 0.5){
+      etaGs = distToDest / gs;
+    }
+    ui.etaGs.textContent = fmtTime(etaGs);
+
+    requestAnimationFrame(render);
+  }
+
+  // Wire UI
+  ui.btnSet.addEventListener("click", setDestination);
+
+  ui.btnCompass.addEventListener("click", async () => {
+    await enableCompass();
+  });
+
+  ui.btnStart.addEventListener("click", async () => {
+    if (!state.dest) await setDestination();
+    startWatch();
+    // If a fix exists, start immediately. If not, wait briefly.
+    if (state.pos) startNavigation();
+    else setTimeout(() => startNavigation(), 400);
+  });
+
+  ui.btnStop.addEventListener("click", stopNavigation);
+  ui.btnReset.addEventListener("click", resetAll);
+  ui.btnRecenter.addEventListener("click", recenter);
+  ui.btnCopy.addEventListener("click", copyFix);
+
+  // Init
+  buildDial();
+  setDestPill("NOT SET");
+  setGpsPill("WAIT", "warn");
+  startWatch();
+  requestAnimationFrame(render);
+})();
+</script>
 </body>
 </html>
